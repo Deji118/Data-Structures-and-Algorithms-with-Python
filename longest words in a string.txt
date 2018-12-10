@@ -1,0 +1,11 @@
+def longest(string):
+    tokens = string.split()
+    max_length = 0
+    max_word=""
+    for token in tokens:
+        if len(token)>max_length:
+            max_length = len(token)
+            max_word = token
+    return max_word
+print(longest("the lord is come"))
+token.sort(key=lamda s:len(s))

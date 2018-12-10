@@ -1,0 +1,25 @@
+string="geeksforgeeks"
+def remove(string):
+    letters=[]
+    for letter in string:
+        if letter not in letters:
+            letters.append(letter)
+            letters.sort()
+    return letters
+def constring(string):
+    x=remove(string)
+    i=0
+    while i<len(x):
+        print(x[i],end="")
+        i=i+1
+constring(string)
+
+def compress(string):
+	letters=""
+	for letter in string:
+		if letter not in letters:
+			letters+=letter
+
+	return letters
+	
+print(compress('geeksforgeeks'),end="")

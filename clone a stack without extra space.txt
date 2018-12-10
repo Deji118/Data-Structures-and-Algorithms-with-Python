@@ -1,0 +1,62 @@
+Clone a stack without extra space
+Approach: In order to solve this without using extra space, we first reverse the source stack, then pop the top elements of the source stack one by one and push it into the destination stack. We follow the below steps to reverse the source stack:
+
+Initialize a variable count to 0.
+Pop the top element from the source stack and store it in variable topVal.
+Now pop the elements from the source stack and push them into the dest stack until the length of the source stack is equal to count.
+Push topVal ino the source stack and then pop all the elements in the dest stack and push them into the source stack.
+Increment the value of count.
+If count is not equal to length of source stack – 1, repeat the process from step-2.
+
+
+class Stack(object): 
+      
+    def __init__(self): 
+        self.stack = [] 
+          
+    def push(self, value): 
+        self.stack.append(value) 
+          
+    def pop(self): 
+        return self.stack.pop() 
+          
+    def length(self): 
+        return len(self.stack) 
+          
+    def display(self): 
+        for i in range(len(self.stack)-1, -1, -1): 
+            print(self.stack[i]) 
+              
+        print() 
+          
+source = Stack()     # Source Stack 
+dest = Stack()         # Destination Stack 
+  
+source.push(1) 
+source.push(2) 
+source.push(3) 
+  
+print("Source Stack:") 
+source.display() 
+  
+count = 0
+  
+# Reverse the order of the values in source stack 
+while count != source.length() - 1: 
+      
+    topVal = source.pop() 
+    while count != source.length(): 
+        dest.push(source.pop()) 
+          
+    source.push(topVal) 
+    while dest.length() != 0: 
+        source.push(dest.pop()) 
+          
+    count += 1
+  
+# Pop the values from source and push into destination stack 
+while source.length() != 0: 
+    dest.push(source.pop()) 
+      
+print("Destination Stack:") 
+dest.display() 

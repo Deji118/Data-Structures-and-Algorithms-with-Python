@@ -1,0 +1,95 @@
+# Create a class Node with instance variables data and next.
+# Create a class LinkedList with instance variables head and last_node.
+# The variable head points to the first element in the linked list while last_node points to the last.
+# Define methods append and display inside the class LinkedList to append data and display the linked list respectively.
+# Define a function print_middle that prints the middle element(s) of the list.
+# The function print_middle iterates through the list to find its length and then iterates again to half its length. If the length of the list is even, it prints two middle elements.
+# Create an instance of LinkedList, append data to it and print its middle element(s).
+class Node:
+    def __init__(self,data=None,next=None):
+        self.data=data
+        self.next=next
+class linkedlist:
+    def __init__(self):
+        self.head=None
+    def print_middle(self):
+        current =self.head
+        length=0
+        while current:
+            current=current.next
+            length=length+1
+        current=self.head
+        for i in range((length-1)//2):
+            current=current.next
+        if current:
+            if length%2==0:
+                print('The two middle elements are',current.data , 'and ', current.next.data)
+            else:
+                print('the middle element is.', current.data)
+        else:
+            print('the list is empty.')
+
+if __name__ =='__main__':
+    list=linkedlist()
+  
+    list.head=Node(1)
+    node2=Node(2)
+    node3=Node(3)
+    node4=Node(4)
+    list.head.next=node2
+    node2.next=node3
+    node3.next=Node(4)
+    list.print_middle()
+
+# Create a class Node with instance variables data and next.
+# Create a class LinkedList with instance variables head and last_node.
+# The variable head points to the first element in the linked list while last_node points to the last.
+# Define methods append and display inside the class LinkedList to append data and display the linked list respectively.
+# Define a function print_middle that prints the middle element(s) of the list.
+# The function print_middle iterates through the list to find its length and then iterates again to half its length. If the length of the list is even, it prints two middle elements.
+# Create an instance of LinkedList, append data to it and print its middle element(s).
+class Node:
+    def __init__(self,data=None,next=None,prev=None):
+        self.data=data
+        self.next=next
+        self.prev=None
+class linkedlist:
+    def __init__(self):
+        self.head=None
+    def detect(self):
+        prev=None
+        slow_p = fast_p = self.head 
+        while(slow_p and fast_p and fast_p.next): 
+            
+            slow_p = slow_p.next 
+            fast_p = fast_p.next.next
+         
+
+        return slow_p.data
+
+
+if __name__ =='__main__':
+    list=linkedlist()
+  
+    list.head=Node(1)
+    node2=Node(2)
+    node3=Node(3)
+    node4=Node(4)
+    node5=Node(5)
+    node6=Node(6)
+    list.head.next=node2
+    node2.next=node3
+    node3.next=node4
+    node4.next=node5
+    node5.next=node6
+    print(list.detect())
+
+
+
+
+
+
+
+
+
+

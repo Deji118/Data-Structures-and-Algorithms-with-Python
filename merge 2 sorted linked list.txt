@@ -1,0 +1,54 @@
+class Node:
+  def __init__(self,data=None,next=None):
+    self.data=data#
+    self.next=next
+
+class linkedlist:
+  def __init__(self):
+    self.head=None
+
+  def printList(self): 
+    temp = self.head 
+        
+    while temp : 
+      print(temp.data, end="->") 
+      temp = temp.next
+def merge(head1,head2):
+  if head1 is None:
+    return head2
+  if head2 is None:
+    return head1
+  if head1.data<=head2.data:
+    temp=head1
+    temp.next=merge(head1.next,head2)
+  else:
+    temp=head2
+    temp.next=merge(head1,head2.next)
+  return temp
+
+if __name__ =='__main__':
+    list1=linkedlist()
+  
+    list1.head=Node(1)
+    node2=Node(2)
+    node3=Node(3)
+    node4=Node(4)
+    list1.head.next=node2
+    node2.next=node3
+    node3.next=Node(4)
+    list2=linkedlist()
+    list2.head=Node(5)
+    node6=Node(6)
+    node7=Node(7)
+    list2.head.next=node6
+    node6.next=Node(7)
+    list3=linkedlist()
+
+    list3.head = merge(list1.head, list2.head) 
+  
+    print(" Merged Linked List is : ", ) 
+    list3.printList()      
+  
+    
+
+

@@ -1,0 +1,22 @@
+#time complexity is log(n) time
+def binarysearch(list,item):
+  low=0
+  high=len(list)
+  if len(list)==1:
+    return 0
+  if len(list)==0:
+    return None
+
+  else:
+   while low<=high:
+    mid=(low+high)//2
+    guess=list[mid]
+    if item==guess:
+      return mid
+    if guess>item:
+      high=mid
+    else:
+      low=mid
+  return None
+list=[]
+print(binarysearch(list,2))

@@ -1,0 +1,5 @@
+import datetime as dt
+import time as tm
+tm.time()
+dtnow=dt.datetime.fromtimestamp(tm.time())
+dtnow

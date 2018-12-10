@@ -1,0 +1,61 @@
+# Python program to reverse a linked list 
+# Time Complexity : O(n) 
+# Space Complexity : O(1) 
+
+# Node class 
+class Node: 
+
+	# Constructor to initialize the node object 
+	def __init__(self, data): 
+		self.data = data 
+		self.next = None
+
+class LinkedList: 
+
+	# Function to initialize head 
+	def __init__(self): 
+		self.head = None
+
+	# Function to reverse the linked list 
+	def reverse(self): 
+		prev = None
+		current = self.head 
+		while(current is not None): 
+			next = current.next
+			current.next = prev 
+			prev = current 
+			current = next
+		self.head = prev 
+	# Utility function to print the linked LinkedList 
+	def printList(self): 
+		temp = self.head 
+		while(temp): 
+			print (temp.data) 
+			temp = temp.next
+
+if __name__=='__main__':
+    llist=LinkedList()
+    llist.head=Node(1)
+    node2=Node(2)
+    node3=Node(3)
+    llist.head.next=node2
+    node2.next=node3
+    llist.printList()
+    llist.reverse() 
+    llist.printList()
+# This code is contributed by Nikhil Kumar Singh(nickzuck_007) 
+
+
+# This code is contributed by Nikhil Kumar Singh(nickzuck_007) 
+#Initialize three pointers prev as NULL, curr as head and next as NULL.
+#Iterate trough the linked list. In loop, do following.
+#// Before changing next of current,
+#// store next node
+#next = curr->next
+#// Now change next of current
+#// This is where actual reversing happens
+#curr->next = prev
+
+#// Move prev and curr one step forward
+##prev = curr
+#curr = next

@@ -1,0 +1,113 @@
+# Python3 program for array implementation of queue 
+
+# Class Queue to represent a queue 
+class Queue: 
+
+	# __init__ function 
+	def __init__(self, capacity): 
+		self.front = self.size = 0
+		self.rear = capacity -1
+		self.Q = [None]*capacity 
+		self.capacity = capacity 
+	
+	# Queue is full when size becomes 
+	# equal to the capacity 
+	def isFull(self): 
+		return self.size == self.capacity 
+	
+	# Queue is empty when size is 0 
+	def isEmpty(self): 
+		return self.size == 0
+
+	# Function to add an item to the queue. 
+	# It changes rear and size 
+	def EnQueue(self, item): 
+		if self.isFull(): 
+			print("Full") 
+			return
+		self.rear = (self.rear + 1) % (self.capacity) 
+		self.Q[self.rear] = item 
+		self.size = self.size + 1
+		print("%s enqueued to queue" %str(item)) 
+
+	# Function to remove an item from queue. 
+	# It changes front and size 
+	def DeQueue(self): 
+		if self.isEmpty(): 
+			print("Empty") 
+			return
+		
+		print("%s dequeued from queue" %str(self.Q[self.front])) 
+		self.front = (self.front + 1) % (self.capacity) 
+		self.size = self.size -1
+		
+	# Function to get front of queue 
+	def que_front(self): 
+		if self.isEmpty(): 
+			print("Queue is empty") 
+
+		print("Front item is", self.Q[self.front]) 
+		
+	# Function to get rear of queue 
+	def que_rear(self): 
+		if self.isEmpty(): 
+			print("Queue is empty") 
+		print("Rear item is", self.Q[self.rear]) 
+
+
+# Driver Code 
+if __name__ == '__main__': 
+
+	queue = Queue(30) 
+	queue.EnQueue(10) 
+	queue.EnQueue(20) 
+	queue.EnQueue(30) 
+	queue.EnQueue(40) 
+	queue.DeQueue() 
+	queue.que_front() 
+	queue.que_rear() 
+
+
+
+
+
+Applications of Queue:
+Queue is used when things don’t have to be processed immediatly, but have to be processed in First InFirst Out order like Breadth First Search. This property of Queue makes it also useful in following kind of scenarios.
+
+1) When a resource is shared among multiple consumers. Examples include CPU scheduling, Disk Scheduling.
+2) When data is transferred asynchronously (data not necessarily received at same rate as sent) between two processes. Examples include IO Buffers, pipes, file IO, etc.
+
+See this for more detailed applications of Queue and Stack.
+
+Array implementation Of Queue
+For implementing queue, we need to keep track of two indices, front and rear. We enqueue an item at the rear and dequeue an item from front. If we simply increment front and rear indices, then there may be problems, front may reach end of the array. The solution to this problem is to increase front and rear in circular manner (See this for details)
+class Queue:
+	def __init__(self):
+		self.rear=capacity-1
+		self.front=0
+		self.size=0
+		self.Q=[]*capacity
+		self.capacity=capacity
+	def isfull(self):
+		return self.size==capacity
+	def isempty(self):
+		return self.size==0
+	def enqueue(self,data):
+		if self.isfull():
+			return
+		self.rear=self.rear+1
+		self.Q[rear.rear]=item
+		self.size=self.size+1
+	def dequeue(self):
+		if self.isempty():
+			return
+	def quefront(self):
+		if self.isempty():
+			print what you like
+		print(found,self.Q)
+	def queue(self):
+		if self.isempty(self):
+			print queue is empty
+		print(rear is self.Q[self.rear])
+
+

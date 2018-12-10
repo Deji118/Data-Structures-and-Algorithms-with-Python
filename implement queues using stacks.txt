@@ -1,0 +1,94 @@
+class Queue:
+    def __init__(self):
+        self.inbox = Stack()
+        self.outbox = Stack()
+ 
+    def is_empty(self):
+        return (self.inbox.is_empty() and self.outbox.is_empty())
+ 
+    def enqueue(self, data):
+        self.inbox.push(data)
+ 
+    def dequeue(self):
+        if self.outbox.is_empty():
+            while not self.inbox.is_empty():
+                popped = self.inbox.pop()
+                self.outbox.push(popped)
+        return self.outbox.pop()
+ 
+#Create a class Node with instance variables data and next.
+#Create a class Stack with instance variable items initialized to an empty list.
+#Define methods push, pop and is_empty inside the class Stack.
+#The method push appends data to items.
+#The method pop pops the first element in items.
+#The method is_empty returns True only if items is empty.
+#Create a class Queue with instance variables inbox and outbox, both initialized to an empty stack.
+#Define methods enqueue, dequeue and is_empty inside the class Queue.
+#The method enqueue pushes data to the stack inbox.
+#The method dequeue pops from the stack outbox if it is not empty. If it is empty, then all the elements from inbox are popped and pushed to outbox before popping from outbox.
+#The method is_empty returns True only if both the stacks inbox and outbox are empty.
+#Create an instance of Queue and present a menu to the user to perform operations on the queue. 
+class Stack:
+    def __init__(self):
+        self.items = []
+ 
+    def is_empty(self):
+        return self.items == []
+ 
+    def push(self, data):
+        self.items.append(data)
+ 
+    def pop(self):
+        return self.items.pop()
+ 
+ 
+a_queue = Queue()
+while True:
+    print('enqueue <value>')
+    print('dequeue')
+    print('quit')
+    do = input('What would you like to do? ').split()
+ 
+    operation = do[0].strip().lower()
+    if operation == 'enqueue':
+        a_queue.enqueue(int(do[1]))
+    elif operation == 'dequeue':
+        if a_queue.is_empty():
+            print('Queue is empty.')
+        else:
+            dequeued = a_queue.dequeue()
+            print('Dequeued element: ', int(dequeued))
+    elif operation == 'quit':
+        break
+class Stack:
+    def __init__(self):
+        self.items=[]
+    def is_empty(self):
+        return self.items==[]
+    def push(self,data):
+        self.items.append(data)
+    def pop(self):
+        return self.items.pop() 
+class Queue:
+    def __init__(self):
+        self.inbox=Stack()
+        self.outbox=Stack()
+    def is_empty(self):
+        return (self.inbox.is_empty()and self.outbox.is_empty())
+    def enqueue(self,data):
+        self.inbox.push(data)
+    def dequeue(self):
+        if self.outbox.is_empty():
+            while not self.inbox.is_empty():
+                popped =self.inbox.pop()
+                self.outbox.push(popped)
+                
+        return self.outbox.pop()
+
+a_queue=Queue()
+a_queue.enqueue(12)
+a_queue.enqueue(10)
+a_queue.enqueue(8)
+while not a_queue.is_empty():
+    print(a_queue.dequeue())
+    a_queue.dequeue

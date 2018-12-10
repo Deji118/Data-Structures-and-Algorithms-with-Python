@@ -1,0 +1,58 @@
+#Worst case complexity is O(n**2) where n is the input string length in chars.
+def memo(func):
+    '''
+    Applies simple memoization to a function
+    '''
+    cache = {}
+    def closure(*args):
+        if args in cache:
+            v = cache[args]
+        else:
+            v = func(*args)
+            cache[args] = v
+        return v
+    return closure
+
+
+def segment(text, words):
+    '''
+    Return the first match that is the segmentation of 'text' into words
+    '''
+    @memo
+    def _segment(text):
+        if text in words: return text
+        for i in range(1, len(text)):
+            prefix, suffix = text[:i], text[i:]
+            segmented_suffix = _segment(suffix)
+            if prefix in words and segmented_suffix:
+                return '%s %s' % (prefix, segmented_suffix)
+        return None
+    return _segment(text)
+
+
+def segment_all(text, words):
+    '''
+    Return a full list of matches that are the segmentation of 'text' into words
+    '''
+    @memo
+    def _segment(text):
+        matches = []
+        if text in words: 
+            matches.append(text)
+        for i in range(1, len(text)):
+            prefix, suffix = text[:i], text[i:]
+            segmented_suffix_matches = _segment(suffix)
+            if prefix in words and len(segmented_suffix_matches):
+                for match in segmented_suffix_matches:
+                    matches.append('%s %s' % (prefix, match))
+        return matches 
+    return _segment(text)
+
+
+if __name__ == "__main__":    
+    string = 'cargocultscience'
+    words = set('car cargo go cult science'.split())
+    print (segment(string, words))
+    # >>> car go cult science
+    print (segment_all(string, words))
+    # >>> ['car go cult science', 'cargo cult science']

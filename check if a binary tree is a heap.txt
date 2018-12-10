@@ -1,0 +1,112 @@
+# To check if a binary tree 
+# is a MAX Heap or not 
+class GFG: 
+	def __init__(self, value): 
+		self.key = value 
+		self.left = None
+		self.right = None
+	
+	def count_nodes(self, root): 
+		if root is None: 
+			return 0
+		else: 
+			return (1 + self.count_nodes(root.left) +
+						self.count_nodes(root.right)) 
+	
+	def heap_propert_util(self, root): 
+	
+		if (root.left is None and
+			root.right is None): 
+			return True
+	
+		if root.right is None: 
+			return root.key >= root.left.key 
+		else: 
+			if (root.key >= root.left.key and
+				root.key >= root.right.key): 
+				return (self.heap_propert_util(root.left) and
+						self.heap_propert_util(root.right)) 
+			else: 
+				return False
+	
+	def complete_tree_util(self, root, 
+						index, node_count): 
+		if root is None: 
+			return True
+		if index >= node_count: 
+			return False
+		return (self.complete_tree_util(root.left, 2 *
+									index + 1, node_count) and
+			self.complete_tree_util(root.right, 2 *
+									index + 2, node_count)) 
+	
+	def check_if_heap(self): 
+		node_count = self.count_nodes(self) 
+		if (self.complete_tree_util(self, 0, node_count) and
+			self.heap_propert_util(self)): 
+			return True
+		else: 
+			return False
+
+# Driver Code 
+root = GFG(5) 
+root.left = GFG(2) 
+root.right = GFG(3) 
+root.left.left = GFG(1) 
+
+if root.check_if_heap(): 
+	print("Given binary tree is a heap") 
+else: 
+	print("Given binary tree is not a Heap") 
+
+
+class Node:
+    def __init__(self,data=None,left=None,right=None):
+        self.data=data
+        self.right=right
+        self.left=left
+def count_nodes(root):
+    if root is None:
+        return 0
+    return (1+count_nodes(root.left)+count_nodes(root.right))
+def complete(root,index,node_count):
+    node_count=count_nodes(root)
+    index=0
+    if root is None:
+        return True
+    if index>=node_count:
+        return False
+    return (complete(root.left,2*index+1,node_count) and complete(root.right,2*index+2,node_count))
+def heap(root):
+    if root is None:
+        return True
+    if root.right is None and root.left is None:
+        return True
+    if root.right is None:
+        return root.key>=root.left.data
+    if root.left is None:
+        return root.data>=root.left.data
+    else:
+        if root.data>=root.right.data and root.data>=root.left.data:
+            return (heap(root.left)and heap(root.right))
+        else:
+            return False
+def final(root):
+    node_count=count_nodes(root)
+    if complete(root,0,node_count) and heap(root):
+        return True
+    return False
+
+
+root = Node(7) 
+root.left = Node(2) 
+root.right = Node(3) 
+root.left.left = Node(1) 
+root.left.right = Node(1) 
+
+
+
+if final(root): 
+	print("Given binary tree is a heap") 
+else: 
+	print("Given binary tree is not a Heap") 

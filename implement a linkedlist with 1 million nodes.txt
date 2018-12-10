@@ -1,0 +1,15 @@
+
+I recently attended Microsoft Interview.
+
+I was asked to implement linked list with 1 million nodes? How will you access 999999th node?
+
+What is the optimal design strategy and implementation for such a question?
+A linked list has fairly few variations, because much variation means it would be something other than a linked list.
+
+You can vary it by having single or double linking. Single linking is where you have a pointer to the head (the first node, A say) which points to B which points to C, etc. To turn that into a double linked list you would also add a link from C to B and B to A.
+
+If you have a double linked list then it's meaningful to retain a pointer to the list tail (the last node) as well as the head, which means accessing the last element is cheap, and elements near the end are cheaper, because you can work backwards or forwards... BUT... you would need to know what you want is at the end of the list... AND at the end of the day a linked list is still just that, and if it is going to get very large and that is a problem because of the nature of its use case, then a storage structure other than a linked list should probably be chosen.
+
+You could hybridise your linked list of course, so you could index it or something for example, and there's nothing wrong with that in theory, but if you index ALL the nodes then the linked list nature is no longer of much value, and if you index only some, then the nodes in between indexed nodes have to be sorted or something so you can find a close node and work towards a target node... probably this would never be optimal and a better data structure should be chosen.
+
+Really a linked list should be used when you don't want to do things like get a specific node, but want to iterate nodes regardless.
